@@ -26,7 +26,7 @@ public class FileEncryptionService {
             FileUtilities.createKeyFile(key, newKeyFilePath);
 
             return "Encrypted successfully. \nnew file path: " + newFilePath
-                    + "\nnew Key file path: " + newKeyFilePath;
+                    + "\nnew Key binary file path: " + newKeyFilePath;
 
         } catch (Exception e) {
             return "ERROR : encryption Failed." + "\n" + e.getMessage();
