@@ -1,3 +1,5 @@
+import algorithms.models.Key;
+
 import java.io.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -5,7 +7,7 @@ import java.nio.file.Path;
 
 public class FileUtilities {
 
-    public static char[] convertFileToCharArray(String fileName) throws IOException
+    public static char[] readFileToCharArray(String fileName) throws IOException
     {
         Path filePath = Path.of(fileName);
         String content = Files.readString(filePath);
@@ -52,5 +54,21 @@ public class FileUtilities {
             return "";
         }
         return name.substring(lastIndexOf);
+    }
+
+    public static void createKeyFile(Key<?> key, String filePath) throws IOException {
+        File file = new File(Path.of(filePath).getParent().toString() ,Path.of(filePath).getFileName().toString());
+        boolean fileCreated = file.createNewFile();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file.getPath()));
+        objectOutputStream.writeObject(key);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }
+
+    public static Key<?> readKeyFile(String fileName) throws IOException, ClassNotFoundException {
+        Path filePath = Path.of(fileName);
+        ObjectInputStream objectInputStream =
+                new ObjectInputStream(new FileInputStream( filePath.toString()));
+        return (Key<?>) (objectInputStream.readObject());
     }
 }
