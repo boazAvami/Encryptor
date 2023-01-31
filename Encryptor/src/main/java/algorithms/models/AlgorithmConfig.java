@@ -2,43 +2,64 @@ package algorithms.models;
 
 import algorithms.enums.AlgorithmType;
 
-import java.security.AlgorithmParameterGenerator;
+public class AlgorithmConfig {
+    private AlgorithmType algorithmType;
+    private AlgorithmConfig firstAlgoConfigurations;
+    private AlgorithmConfig secondAlgoConfigurations;
+    private int repeats = 1;
 
-public class AlgorithmConfig extends AlgorithmRequirements {
-    private Key<?> key;
-
-    public AlgorithmConfig(AlgorithmType algorithmType, Key<?> key, AlgorithmType seconderAlgorithmType, int repeats) {
-        super(algorithmType,seconderAlgorithmType,repeats);
-        this.key = key;
+    public AlgorithmConfig(AlgorithmType algorithmType, AlgorithmConfig firstAlgoConfigurations, AlgorithmConfig secondAlgoConfigurations, int repeats) {
+        this.algorithmType = algorithmType;
+        this.firstAlgoConfigurations = firstAlgoConfigurations;
+        this.secondAlgoConfigurations = secondAlgoConfigurations;
+        this.repeats = repeats;
     }
 
-    public AlgorithmConfig(AlgorithmType algorithmType, Key<?> key, AlgorithmType seconderAlgorithmType) {
-        super(algorithmType,seconderAlgorithmType);
-        this.key = key;
-    }
-    public AlgorithmConfig(AlgorithmType algorithmType, Key<?> key) {
-        super(algorithmType);
-        this.key = key;
+    public AlgorithmConfig(AlgorithmType algorithmType) {
+        this.algorithmType = algorithmType;
     }
 
-    public AlgorithmConfig(AlgorithmRequirements algorithmRequirements, Key<?> Key){
-        this(algorithmRequirements.getAlgorithmType(),Key,
-                algorithmRequirements.getSeconderAlgorithmType(),
-                algorithmRequirements.getRepeats());
+    public AlgorithmConfig(AlgorithmType algorithmType, AlgorithmConfig firstAlgoConfigurations, int repeats) {
+        this.algorithmType = algorithmType;
+        this.firstAlgoConfigurations = firstAlgoConfigurations;
+        this.repeats = repeats;
     }
 
-    public Key<?> getKey() {
-        return key;
+    public AlgorithmConfig(AlgorithmType algorithmType, AlgorithmConfig firstAlgoConfigurations, AlgorithmConfig secondAlgoConfigurations) {
+        this.algorithmType = algorithmType;
+        this.firstAlgoConfigurations = firstAlgoConfigurations;
+        this.secondAlgoConfigurations = secondAlgoConfigurations;
     }
 
-    public void setKey(Key<?> key) {
-        this.key = key;
+    public AlgorithmType getAlgorithmType() {
+        return algorithmType;
     }
 
-    public AlgorithmConfig getSecondaryConfig(Key<?> key){
-        return new AlgorithmConfig(super.getSeconderAlgorithmType(),key);
+    public void setAlgorithmType(AlgorithmType algorithmType) {
+        this.algorithmType = algorithmType;
     }
-    public AlgorithmConfig getSecondaryConfig(){
-        return new AlgorithmConfig(super.getSeconderAlgorithmType(),key);
+
+    public AlgorithmConfig getFirstAlgoConfigurations() {
+        return firstAlgoConfigurations;
+    }
+
+    public void setFirstAlgoConfigurations(AlgorithmConfig firstAlgoConfigurations) {
+        this.firstAlgoConfigurations = firstAlgoConfigurations;
+    }
+
+    public AlgorithmConfig getSecondAlgoConfigurations() {
+        return secondAlgoConfigurations;
+    }
+
+    public void setSecondAlgoConfigurations(AlgorithmConfig secondAlgoConfigurations) {
+        this.secondAlgoConfigurations = secondAlgoConfigurations;
+    }
+
+    public int getRepeats() {
+        return repeats;
+    }
+
+    public void setRepeats(int repeats) {
+        this.repeats = repeats;
     }
 }

@@ -9,8 +9,8 @@ public abstract class EncryptionAlgorithm<T> implements IEncryptionFunctionality
         return key;
     }
 
-    public void setKey(Key<T> key) {
-        this.key = key;
+    public void setKey(Key<?> key) {
+        this.key = (Key<T>)(key);
     }
 
     public EncryptionAlgorithm(Key<T> key) {

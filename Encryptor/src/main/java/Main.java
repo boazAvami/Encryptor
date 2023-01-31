@@ -1,7 +1,5 @@
 import algorithms.enums.AlgorithmType;
 import algorithms.models.AlgorithmConfig;
-import algorithms.models.AlgorithmRequirements;
-import algorithms.models.Key;
 
 import java.util.Scanner;
 
@@ -25,8 +23,12 @@ public class Main {
                 System.out.println("Please enter the file path:");
                 String encryptionFilePath =    "C:\\Users\\boazo\\Desktop\\try\\trytry.txt"; //scanner.next();
 
-                System.out.println(new AlgorithmRequirements(AlgorithmType.DOUBLE).getAlgorithmType());
-                System.out.println(encryptionService.encrypt(encryptionFilePath, new AlgorithmRequirements(AlgorithmType.DOUBLE)));
+                System.out.println(new AlgorithmConfig(AlgorithmType.DOUBLE).getAlgorithmType());
+                System.out.println(encryptionService.encrypt(encryptionFilePath,
+                        new AlgorithmConfig(AlgorithmType.DOUBLE,
+                                new AlgorithmConfig(AlgorithmType.REPEAT,
+                                        new AlgorithmConfig(AlgorithmType.SHIFT_ADD), 4),
+                                new AlgorithmConfig(AlgorithmType.XOR))));
                 break;
             case 2:
                 System.out.println("Please enter the file path:");
@@ -35,7 +37,11 @@ public class Main {
                 String decryptionKeyFilePath =  "C:\\Users\\boazo\\Desktop\\try\\key.dat";// scanner.next();
 
                 System.out.println(
-                        encryptionService.decrypt(decryptionFilePath, decryptionKeyFilePath,new AlgorithmRequirements(AlgorithmType.DOUBLE)));
+                        encryptionService.decrypt(decryptionFilePath, decryptionKeyFilePath,
+                                new AlgorithmConfig(AlgorithmType.DOUBLE,
+                                    new AlgorithmConfig(AlgorithmType.REPEAT,
+                                            new AlgorithmConfig(AlgorithmType.SHIFT_ADD), 4),
+                                    new AlgorithmConfig(AlgorithmType.XOR))));
                 break;
             default:
                 System.out.println("Invalid option!");
