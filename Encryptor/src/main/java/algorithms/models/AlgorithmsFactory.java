@@ -1,13 +1,15 @@
 package algorithms.models;
 
-import algorithms.*;
+import algorithms.DoubleEncryption;
+import algorithms.OperatorShiftAlgorithm;
+import algorithms.RepeatEncryption;
 import algorithms.charActions.CharactersOperatorFactory;
 import algorithms.enums.CharOperatorType;
 import algorithms.interfaces.IEncryptionFunctionality;
 
 public class AlgorithmsFactory {
-    public static IEncryptionFunctionality generateAlgorithm(AlgorithmConfig algorithmConfig){
-        switch(algorithmConfig.getAlgorithmType()) {
+    public static IEncryptionFunctionality generateAlgorithm(AlgorithmConfig algorithmConfig) {
+        switch (algorithmConfig.getAlgorithmType()) {
             case REPEAT:
                 return new RepeatEncryption(
                         generateAlgorithm(algorithmConfig.getFirstAlgoConfigurations()),
@@ -18,7 +20,7 @@ public class AlgorithmsFactory {
                         generateAlgorithm(algorithmConfig.getSecondAlgoConfigurations()));
             case SHIFT_MULTIPLY:
                 return new OperatorShiftAlgorithm(
-                        new Key<>(randomChar()),
+                        new Key<>(randomOddChar()),
                         CharactersOperatorFactory.generateOperator(CharOperatorType.MULTIPLY));
             case XOR:
                 return new OperatorShiftAlgorithm(
@@ -32,7 +34,13 @@ public class AlgorithmsFactory {
     }
 
     public static char randomChar() {
-        int rnd = (int) (Math.random() * 1000);
+        int rnd = (int) (Math.random() * (Character.MAX_VALUE - 1));
+        return (char) (rnd);
+    }
+
+    public static char randomOddChar() {
+        int rnd = (int) (Math.random() * (Character.MAX_VALUE / 2));
+        rnd = (rnd * 2) - 1;
         return (char) (rnd);
     }
 }

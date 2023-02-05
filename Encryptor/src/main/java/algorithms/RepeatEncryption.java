@@ -47,12 +47,12 @@ public class RepeatEncryption implements IEncryptionFunctionality {
     }
 
     @Override
-    public void setKey(Key<?> key) {
-        this.encryption.setKey(key);
+    public Key<?> getKey() {
+        return this.encryption.getKey();
     }
 
     @Override
-    public Key<?> getKey() {
-        return this.encryption.getKey();
+    public void setKey(Key<?> key) {
+        this.encryption.setKey(key);
     }
 }

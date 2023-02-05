@@ -22,17 +22,17 @@ public class OperatorShiftAlgorithm extends EncryptionAlgorithm<Character> {
 
     @Override
     public char[] encrypt(char[] content) {
-        char[] contentClone =  content.clone();
+        char[] contentClone = content.clone();
         for (int currContentChar = 0; currContentChar < contentClone.length; currContentChar++) {
             contentClone[currContentChar] =
-                    this.charactersOperator.actionForward(contentClone[currContentChar] , this.key.getKeyObject());
+                    this.charactersOperator.actionForward(contentClone[currContentChar], this.key.getKeyObject());
         }
         return contentClone;
     }
 
     @Override
     public char[] decrypt(char[] content) {
-        char[] contentClone =  content.clone();
+        char[] contentClone = content.clone();
         for (int currContentChar = 0; currContentChar < contentClone.length; currContentChar++) {
             contentClone[currContentChar] =
                     this.charactersOperator.actionBackward(contentClone[currContentChar],
