@@ -3,7 +3,7 @@ package algorithms;
 import algorithms.interfaces.IEncryptionFunctionality;
 import algorithms.models.Key;
 
-public class DoubleEncryption implements IEncryptionFunctionality{
+public class DoubleEncryption implements IEncryptionFunctionality {
     private IEncryptionFunctionality firstEncryption;
     private IEncryptionFunctionality secondEncryption;
 
@@ -45,14 +45,14 @@ public class DoubleEncryption implements IEncryptionFunctionality{
     }
 
     @Override
-    public void setKey(Key<?> key) {
-        this.firstEncryption.setKey(((Key<?>[])key.getKeyObject())[0]);
-        this.secondEncryption.setKey(((Key<?>[])key.getKeyObject())[1]);
+    public Key<?> getKey() {
+        return new Key<>(new Key<?>[]{this.firstEncryption.getKey(),
+                this.secondEncryption.getKey()});
     }
 
     @Override
-    public Key<?> getKey() {
-        return new Key<>(new Key<?>[]{this.firstEncryption.getKey(),
-                        this.secondEncryption.getKey()});
+    public void setKey(Key<?> key) {
+        this.firstEncryption.setKey(((Key<?>[]) key.getKeyObject())[0]);
+        this.secondEncryption.setKey(((Key<?>[]) key.getKeyObject())[1]);
     }
 }
