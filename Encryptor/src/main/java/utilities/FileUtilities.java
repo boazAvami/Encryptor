@@ -1,8 +1,6 @@
 package utilities;
 
 import algorithms.models.Key;
-import exceptions.InvalidEncryptionKeyException;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -63,17 +61,12 @@ public class FileUtilities {
         objectOutputStream.close();
     }
 
-    public static Key<?> readKeyFile(String fileName) throws IOException, InvalidEncryptionKeyException {
+    public static Key<?> readKeyFile(String fileName) throws IOException, ClassNotFoundException {
         Path filePath = Path.of(fileName);
         ObjectInputStream objectInputStream =
                 new ObjectInputStream(new FileInputStream(filePath.toString()));
         Key<?> key;
-
-        try {
-            key = (Key<?>) (objectInputStream.readObject());
-        } catch (Exception e) {
-            throw new InvalidEncryptionKeyException();
-        }
+        key = (Key<?>) (objectInputStream.readObject());
 
         return key;
     }
