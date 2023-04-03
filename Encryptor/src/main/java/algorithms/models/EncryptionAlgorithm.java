@@ -1,6 +1,7 @@
 package algorithms.models;
 
 import algorithms.interfaces.IEncryptionFunctionality;
+import exceptions.InvalidEncryptionKeyException;
 
 public abstract class EncryptionAlgorithm<T> implements IEncryptionFunctionality {
     protected Key<T> key;
@@ -11,9 +12,5 @@ public abstract class EncryptionAlgorithm<T> implements IEncryptionFunctionality
 
     public Key<T> getKey() {
         return key;
-    }
-
-    public void setKey(Key<?> key) {
-        this.key = (Key<T>) (key);
     }
 }

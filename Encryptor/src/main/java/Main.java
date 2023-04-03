@@ -10,7 +10,6 @@ public class Main {
     }
 
     public static void runActionMenu() {
-        FileEncryptionUtilities encryptionService = new FileEncryptionUtilities();
 
         System.out.println("Please select one of the following options:");
         System.out.println("1. Encryption");
@@ -25,7 +24,7 @@ public class Main {
                 String encryptionFilePath = "C:\\Users\\boazo\\Desktop\\try\\trytry.txt"; //scanner.next();
 
                 System.out.println(new AlgorithmConfig(AlgorithmType.DOUBLE).getAlgorithmType());
-                System.out.println(encryptionService.encrypt(encryptionFilePath,
+                System.out.println(FileEncryptionUtilities.encrypt(encryptionFilePath,
                         new AlgorithmConfig(AlgorithmType.DOUBLE,
                                 new AlgorithmConfig(AlgorithmType.REPEAT,
                                         new AlgorithmConfig(AlgorithmType.SHIFT_ADD), 4),
@@ -38,7 +37,7 @@ public class Main {
                 String decryptionKeyFilePath = "C:\\Users\\boazo\\Desktop\\try\\key.dat";// scanner.next();
 
                 System.out.println(
-                        encryptionService.decrypt(decryptionFilePath, decryptionKeyFilePath,
+                        FileEncryptionUtilities.decrypt(decryptionFilePath, decryptionKeyFilePath,
                                 new AlgorithmConfig(AlgorithmType.DOUBLE,
                                         new AlgorithmConfig(AlgorithmType.REPEAT,
                                                 new AlgorithmConfig(AlgorithmType.SHIFT_ADD), 4),
@@ -49,3 +48,5 @@ public class Main {
         }
     }
 }
+
+//mvn clean verify sonar:sonar -Dsonar.projectKey=Encryptor -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_9945e6f7bfcb561020cad92e2328d328155df38a

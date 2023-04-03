@@ -2,6 +2,7 @@ package algorithms;
 
 import algorithms.interfaces.IEncryptionFunctionality;
 import algorithms.models.Key;
+import exceptions.InvalidEncryptionKeyException;
 
 public class RepeatEncryption implements IEncryptionFunctionality {
     private IEncryptionFunctionality encryption;
@@ -52,7 +53,7 @@ public class RepeatEncryption implements IEncryptionFunctionality {
     }
 
     @Override
-    public void setKey(Key<?> key) {
+    public void setKey(Key<?> key) throws InvalidEncryptionKeyException {
         this.encryption.setKey(key);
     }
 }
