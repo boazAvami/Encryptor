@@ -7,7 +7,7 @@ import algorithms.models.Key;
 
 public class FileEncryptionUtilities {
 
-    public String encrypt(String filePath, AlgorithmConfig algorithmConfig) {
+    public static String encrypt(String filePath, AlgorithmConfig algorithmConfig) {
         try {
             char[] content = FileUtilities.readFileToCharArray(filePath);
             IEncryptionFunctionality algorithm = AlgorithmsFactory.generateAlgorithm(algorithmConfig);
@@ -27,7 +27,7 @@ public class FileEncryptionUtilities {
         }
     }
 
-    public String decrypt(String filePath, String keyFilePath, AlgorithmConfig algorithmConfig) {
+    public static String decrypt(String filePath, String keyFilePath, AlgorithmConfig algorithmConfig) {
         try {
             char[] content = FileUtilities.readFileToCharArray(filePath);
             Key<?> key = FileUtilities.readKeyFile(keyFilePath);

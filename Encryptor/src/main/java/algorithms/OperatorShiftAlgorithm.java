@@ -3,6 +3,7 @@ package algorithms;
 import algorithms.interfaces.ICharactersOperator;
 import algorithms.models.EncryptionAlgorithm;
 import algorithms.models.Key;
+import exceptions.InvalidEncryptionKeyException;
 
 public class OperatorShiftAlgorithm extends EncryptionAlgorithm<Character> {
     private ICharactersOperator charactersOperator;
@@ -39,5 +40,14 @@ public class OperatorShiftAlgorithm extends EncryptionAlgorithm<Character> {
                             this.key.getKeyObject());
         }
         return contentClone;
+    }
+
+    @Override
+    public void setKey(Key<?> key) throws InvalidEncryptionKeyException {
+        try {
+            this.key = new Key<Character>((Character) (key.getKeyObject()));
+        } catch (Exception e) {
+            throw new InvalidEncryptionKeyException();
+        }
     }
 }

@@ -2,6 +2,7 @@ package algorithms;
 
 import algorithms.interfaces.IEncryptionFunctionality;
 import algorithms.models.Key;
+import exceptions.InvalidEncryptionKeyException;
 
 public class DoubleEncryption implements IEncryptionFunctionality {
     private IEncryptionFunctionality firstEncryption;
@@ -51,8 +52,13 @@ public class DoubleEncryption implements IEncryptionFunctionality {
     }
 
     @Override
-    public void setKey(Key<?> key) {
-        this.firstEncryption.setKey(((Key<?>[]) key.getKeyObject())[0]);
-        this.secondEncryption.setKey(((Key<?>[]) key.getKeyObject())[1]);
+    public void setKey(Key<?> key) throws InvalidEncryptionKeyException {
+        try {
+            this.firstEncryption.setKey(((Key<?>[]) key.getKeyObject())[0]);
+            this.secondEncryption.setKey(((Key<?>[]) key.getKeyObject())[1]);
+        } catch (Exception e) {
+            throw new InvalidEncryptionKeyException();
+        }
+
     }
 }
