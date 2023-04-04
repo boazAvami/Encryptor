@@ -6,6 +6,10 @@ import exceptions.InvalidEncryptionKeyException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileUtilities {
 
@@ -42,6 +46,11 @@ public class FileUtilities {
 
     public static String getNewPathOnSameDirectory(String filePath, String newName) {
         Path originalFilePath = Path.of(filePath);
+
+        if(isDirectory((filePath))){
+            return originalFilePath+ "\\" + newName;
+        }
+
         return originalFilePath.getParent() + "\\" + newName;
     }
 
@@ -78,4 +87,20 @@ public class FileUtilities {
         return key;
     }
 
+    public static boolean isDirectory(String path) {
+        Path isDirPath = Path.of(path);
+        return Files.isDirectory(isDirPath);
+    }
+
+    public static List<Path> getAllFilesInDir(String directoryPath) throws IOException {
+        if (isDirectory(directoryPath)) {
+            Path dirPath = Paths.get(directoryPath);
+            return Files.list(dirPath)
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(".txt"))
+                    .collect(Collectors.toList());
+        }
+
+        return new ArrayList<Path>();
+    }
 }
