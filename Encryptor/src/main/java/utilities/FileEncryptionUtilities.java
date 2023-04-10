@@ -17,25 +17,34 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class FileEncryptionUtilities {
+    private static EncryptionLogger logger = new EncryptionLogger();
+
     public String encrypt(String filePath, AlgorithmConfig algorithmConfig) {
+        logger.debug("Encryption Started");
         try {
             String message = "";
             IEncryptionFunctionality algorithm = AlgorithmsFactory.generateAlgorithm(algorithmConfig);
 
             if(FileUtilities.isDirectory(filePath)){
+                logger.debug("Attempt to Encrypt a directory");
                 message = saveEncryptFileList(filePath,algorithm);
             } else {
                 message = saveEncryptSingleFile(filePath, algorithm);
             }
 
             message += "\n" + saveKeyFile(filePath,algorithm);
+
+            logger.debug("Encryption Ended");
+
             return message;
         } catch (Exception e) {
+            logger.error("Encryption failed", e);
             return "ERROR : encryption Failed." + "\n" + e.getMessage();
         }
     }
 
     public String decrypt(String filePath, String keyFilePath, AlgorithmConfig algorithmConfig) {
+        logger.debug("Decryption Started");
         try {
             String message = "";
             Key<?> key = FileUtilities.readKeyFile(keyFilePath);
@@ -43,14 +52,19 @@ public class FileEncryptionUtilities {
             algorithm.setKey(key);
 
             if(FileUtilities.isDirectory(filePath)){
+                logger.debug("Attempt to Decrypt a directory");
+
                 message = saveDecryptFileList(filePath,algorithm);
             } else {
                 message = saveDecryptSingleFile(filePath, algorithm);
             }
 
+            logger.debug("Decryption Ended");
+
             return message;
 
         } catch (Exception e) {
+            logger.error("Decryption failed", e);
             return "ERROR : decryption Failed." + "\n" + e.getMessage();
         }
     }

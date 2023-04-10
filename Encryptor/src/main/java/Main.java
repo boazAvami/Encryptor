@@ -1,5 +1,6 @@
 import algorithms.enums.AlgorithmType;
 import algorithms.models.AlgorithmConfig;
+import utilities.EncryptionLogger;
 import utilities.FileEncryptionUtilities;
 
 import java.util.Scanner;
@@ -10,6 +11,9 @@ public class Main {
     }
 
     public static void runActionMenu() {
+        EncryptionLogger logger = new EncryptionLogger();
+        logger.info("Application started.");
+
         FileEncryptionUtilities encryptionService = new FileEncryptionUtilities();
 
         System.out.println("Please select one of the following options:");
@@ -45,7 +49,10 @@ public class Main {
                                         new AlgorithmConfig(AlgorithmType.XOR))));
                 break;
             default:
-                System.out.println("Invalid option!");
+                logger.debug("invalid input error");
+
         }
+        logger.info("Application ended.");
+
     }
 }

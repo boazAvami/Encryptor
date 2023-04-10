@@ -1,0 +1,10 @@
+2023-04-10 11:35:31,615  INFO [main] (EncryptionLogger.java:61) - [127.0.0.1] [Mon Apr 10 11:35:31 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Application started.
+2023-04-10 11:35:38,866 DEBUG [main] (EncryptionLogger.java:65) - [127.0.0.1] [Mon Apr 10 11:35:38 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Encryption Started
+2023-04-10 11:35:38,885 DEBUG [main] (EncryptionLogger.java:65) - [127.0.0.1] [Mon Apr 10 11:35:38 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Attempt to Encrypt a directory
+2023-04-10 11:35:38,935 DEBUG [main] (EncryptionLogger.java:65) - [127.0.0.1] [Mon Apr 10 11:35:38 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Encryption Ended
+2023-04-10 11:35:38,935  INFO [main] (EncryptionLogger.java:61) - [127.0.0.1] [Mon Apr 10 11:35:38 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Application ended.
+2023-04-10 11:35:41,817  INFO [main] (EncryptionLogger.java:61) - [127.0.0.1] [Mon Apr 10 11:35:41 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Application started.
+2023-04-10 11:35:44,052 DEBUG [main] (EncryptionLogger.java:65) - [127.0.0.1] [Mon Apr 10 11:35:44 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Decryption Started
+2023-04-10 11:35:44,092 DEBUG [main] (EncryptionLogger.java:65) - [127.0.0.1] [Mon Apr 10 11:35:44 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Attempt to Decrypt a directory
+2023-04-10 11:35:44,098 DEBUG [main] (EncryptionLogger.java:65) - [127.0.0.1] [Mon Apr 10 11:35:44 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Encryption Ended
+2023-04-10 11:35:44,099  INFO [main] (EncryptionLogger.java:61) - [127.0.0.1] [Mon Apr 10 11:35:44 IDT 2023] [Boaz Encryptor] [EncryptionLogger.java] Application ended.
